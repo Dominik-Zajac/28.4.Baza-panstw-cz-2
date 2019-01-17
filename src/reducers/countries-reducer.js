@@ -13,7 +13,7 @@ const countriesReducer = function(state = initialState, action) {
             });
 
         default: 
-        	return state;
+            return state;
     }
 };
 
