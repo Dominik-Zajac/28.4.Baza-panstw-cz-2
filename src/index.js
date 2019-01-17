@@ -1,12 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { render } from 'react-dom';
+import { Router, hashHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import store from './store';
+import routes from './routes';
+import DevTools from './DevTools';
+import { getCountries } from './actions/actions-countries';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+render (
+	<Provider store={store}>
+		<Router history={hashHistory} routes={routes}/>
+		<DevTools />
+	</Provider>,
+	document.getElementById('root')
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+store.dispatch(getCountries());
